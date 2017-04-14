@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Practice {
+	public static void main (String[] args){
+		Stack<Integer> stack=new Stack<>();
+		stack.push(63);
+		stack.push(37);
+		stack.push(35);
+		stack.push(4);
+		stack.push(93);
+		System.out.println(stack);
+		sort(stack);
+		System.out.println(stack);
+	}
+	public static void sort(Stack<Integer> stack){
+		if(!stack.isEmpty()){
+			int x=stack.pop();
+			sort(stack);
+			insertSortingly(x,stack);
+		}
+	}
+	public static void insertSortingly(int x,Stack<Integer> stack){
+		if(stack.isEmpty()){
+			stack.push(x);
+		}else{
+			if(stack.peek()>x){
+				int y=stack.pop();
+				insertSortingly(x,stack);
+				stack.push(y);
+			}else{
+				stack.push(x);
+			}
+		}
+	}
+}
