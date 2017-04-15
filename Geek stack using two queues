@@ -1,0 +1,47 @@
+
+public class StackofQueues {
+	private Queue<Integer> q1=new Queue<>();
+	private Queue<Integer> q2=new Queue<>();
+	
+	public void push(int x){
+		if(q1.isEmpty() && !q2.isEmpty()){
+			q2.enqueue(x);
+		}else if(q1.isEmpty() && q2.isEmpty()){
+			q1.enqueue(x);
+		}else{
+			q1.enqueue(x);
+		}
+	}
+	public Integer pop(){
+		if(q1.isEmpty() && !q2.isEmpty()){
+			boolean isFilled=true;
+			while(isFilled){
+				int i=q2.dequeue();
+				if(!q2.isEmpty()){
+					q1.enqueue(i); 
+				}else{
+					isFilled=false;
+					return i;
+				}
+			}
+			return null;
+		}else if(!q1.isEmpty() && q2.isEmpty()){
+			boolean isFilled=true;
+			while(isFilled){
+				int i=q1.dequeue();
+				if(!q1.isEmpty()){
+					q2.enqueue(i);
+				}else{
+					isFilled=false;
+					return i;
+				}
+			}
+			return null;
+		}else{
+			return null;
+		}
+	}
+	public boolean isEmpty(){
+		return (q1.isEmpty() && q2.isEmpty());
+	}
+}
