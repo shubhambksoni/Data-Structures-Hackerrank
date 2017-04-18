@@ -1,4 +1,6 @@
 
+//Note- all k stacks should be created at once
+
 public class kStack {
 	static int[] arr=new int[100];
 	static int numOfStacks=0;
