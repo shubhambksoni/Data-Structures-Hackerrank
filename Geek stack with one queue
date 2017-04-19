@@ -1,3 +1,5 @@
+// This could be improved by looping only size-1 times in queue thus array not used and enqueue each time;
+
 
 public class StackofQueue {
 	private Queue<Integer> queue=new Queue<>();
