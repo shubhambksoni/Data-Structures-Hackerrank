@@ -1,0 +1,45 @@
+
+//getmin
+//push
+//pop
+
+public class MinStack {
+	Node first;
+	int min=Integer.MIN_VALUE;
+	private class Node{
+		int item;
+		Node next;
+	}
+	public void push(int x){
+		if(first==null){
+			first=new Node();
+			first.item=x;
+			min=x;
+		}else{
+			Node old=first;
+			first=new Node();
+			first.next=old;
+			if(x>=min){
+				first.item=x;
+			}else{
+				first.item=2*x-min;
+				min=x;
+			}
+		}
+	}
+	public int pop(){
+		if(first.item>=min){
+			int i=first.item;
+			first=first.next;
+			return i;
+		}else{
+			int i=min;
+			min=2*min-first.item;
+			first=first.next;
+			return i;
+		}
+	}
+	public int min(){
+		return min;
+	}
+}
