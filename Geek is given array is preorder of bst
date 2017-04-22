@@ -1,0 +1,32 @@
+import java.util.*;
+
+
+public class IsBinaryTree{
+	public static void main(String[] args){
+		Stack<Integer> stack=new Stack<>();
+		int[] arr={40, 30, 35, 80, 29};
+		System.out.println(isBST(arr,stack));
+	}
+	
+	public static boolean isBST(int[] arr,Stack<Integer> stack){
+		int root=Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++){
+			if(arr[i]<root){
+				return false;
+			}
+			if(arr[i]>root){
+				if(stack.isEmpty())stack.push(arr[i]);
+				else if(arr[i]>stack.peek()){
+					root=stack.pop();
+					stack.push(arr[i]);
+				}
+			}
+		}
+		return true;
+	}
+	
+	
+}
+	
+
+
