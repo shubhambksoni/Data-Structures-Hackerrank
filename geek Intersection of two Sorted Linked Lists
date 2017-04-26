@@ -1,0 +1,90 @@
+
+
+public class LinkedNodes {
+	Node first;
+	public class Node{
+		int key;
+		Node next;
+		public Node(int item,Node n){
+			key=item;
+			next=n;
+		}
+	}
+  
+  //This is the method!!!!
+	
+	public static LinkedNodes merge(LinkedNodes l1,LinkedNodes l2){
+		Node x1=l1.first;
+		Node x2=l2.first;
+		LinkedNodes list=new LinkedNodes();
+		while(x1!=null){
+			while(x2!=null && x2.key<x1.key){
+				x2=x2.next;
+			}
+			if(x2==null)x1=null;
+			else if(x2.key==x1.key){
+				list.add(x2.key);
+				x1=x1.next;
+			}else{
+				x1=x1.next;
+			}
+		}
+		list.reverseList();
+		return list;
+		
+	}
+	public void reverseList(){
+		Node prev=null;
+		Node cur=first;
+		while(cur!=null){
+			if(cur==first){
+				Node x=cur;
+				cur=cur.next;
+				prev=x;
+				x.next=null;
+			}else{
+				Node x=cur;
+				cur=cur.next;
+				x.next=prev;
+				prev=x;
+			}
+		}
+		first=prev;
+	}
+	
+	
+	
+	 
+	
+	public void add(int item){
+		Node x=new Node(item,first);
+		first=x;
+	}
+	public void printList(){
+		Node x=first;
+		while(x!=null){
+			System.out.print(x.key+" ");
+			x=x.next;
+		}
+		System.out.println();
+	}
+	public static void main(String[] args){
+		LinkedNodes list1=new LinkedNodes();
+		LinkedNodes list2=new LinkedNodes();
+		list1.add(5);
+		list1.add(4);
+		list1.add(3);
+		list1.add(2);
+		list1.add(1);
+		list1.printList();
+		list2.add(6);
+		list2.add(4);
+		list2.add(2);
+		list2.printList();
+		
+		
+		LinkedNodes list=merge(list1,list2);
+		list.printList();
+	}
+	 
+}
