@@ -1,0 +1,94 @@
+/*  A Binary Search Tree node
+class Node
+{
+    int data;
+    Node left, right;
+
+    Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+} */
+class GfG
+{
+    int isBST(Node root)  
+    {
+        if(isBST(root,0,0)==true){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    public boolean isBST(Node x,int min,int max){
+        if(x==null)return true;
+        if(min==0 && max==0){
+            if(x.left!=null){
+                if(x.left.data>x.data)return false;
+            }
+            if(x.right!=null){
+                if(x.right.data<x.data)return false;
+            }
+            boolean a=isBST(x.left,0,x.data);
+            boolean b=isBST(x.right,x.data,0);
+            if(a==true && b==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        if(min==0 && max!=0){
+            if(x.left!=null){
+                if(x.left.data>x.data)return false;
+            }
+            if(x.right!=null){
+                if(x.right.data>max || x.right.data<x.data){
+                    return false;
+                }
+            }
+            boolean a=isBST(x.left,0,x.data);
+            boolean b=isBST(x.right,x.data,max);
+            if(a==true && b==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        if(min!=0 && max==0){
+            if(x.left!=null){
+                if(x.left.data<min || x.left.data>x.data){
+                    return false;
+                }
+            }
+            if(x.right!=null){
+                if(x.right.data<x.data)return false;
+            }
+            boolean a=isBST(x.left,min,x.data);
+            boolean b=isBST(x.right,x.data,0);
+            if(a==true && b==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        else{
+            if(x.left!=null){
+                if(x.left.data<min || x.left.data>x.data){
+                    return false;
+                }
+            }
+            if(x.right!=null){
+                if(x.right.data>max || x.right.data<x.data){
+                    return false;
+                }
+            }
+            boolean a=isBST(x.left,min,x.data);
+            boolean b=isBST(x.right,x.data,max);
+            if(a==true && b==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+}
